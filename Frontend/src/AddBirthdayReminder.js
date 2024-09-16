@@ -49,7 +49,7 @@ const AddBirthdayReminder = ({ user }) => {
 
       console.log('Sending data to server:', dataToSend);
 
-      const response = await axios.post('http://localhost:5000/api/add-birthday', dataToSend);
+      const response = await axios.post(`${process.env.hosturl}/api/add-birthday`, dataToSend);
       console.log('Server response:', response.data);
       
       if (response.data && response.data.id) {

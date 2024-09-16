@@ -325,10 +325,10 @@ cron.schedule('0 */6 * * *', () => {
   sendBirthdayReminders();
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
 
 // Test route for sending emails

@@ -23,7 +23,7 @@ const RemindMe = () => {
     const fetchReminderSettings = async () => {
       try {
         if (loggedInUser && loggedInUser._id) {
-          const response = await axios.get(`http://localhost:5000/api/reminder-settings/${loggedInUser._id}`);
+          const response = await axios.get(`${process.env.hosturl}/api/reminder-settings/${loggedInUser._id}`);
           const settings = response.data;
           setRemindMethod(settings.remindMethod || '');
           setReminderType(settings.reminderType || 'email');
@@ -46,7 +46,7 @@ const RemindMe = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/save-reminder-settings', {
+      const response = await axios.post('${process.env.hosturl}/api/save-reminder-settings', {
         userId: storedUser._id,
         remindMethod,
         reminderType,
