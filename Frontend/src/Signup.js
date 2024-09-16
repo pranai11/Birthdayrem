@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { hosturl } from './urls';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('${process.env.hosturl}/api/signup', formData);
+      const response = await axios.post(`${hosturl}/api/signup`, formData);
       console.log('Signup successful:', response.data);
       navigate('/login');
     } catch (error) {

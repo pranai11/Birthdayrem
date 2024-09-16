@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './AddBirthdayReminder.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { hosturl } from './urls';
 
 const AddBirthdayReminder = ({ user }) => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const AddBirthdayReminder = ({ user }) => {
 
       console.log('Sending data to server:', dataToSend);
 
-      const response = await axios.post(`${process.env.hosturl}/api/add-birthday`, dataToSend);
+      const response = await axios.post(`${hosturl}/api/add-birthday`, dataToSend);
       console.log('Server response:', response.data);
       
       if (response.data && response.data.id) {

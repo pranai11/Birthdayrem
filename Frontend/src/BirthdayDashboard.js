@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { hosturl } from './urls';
 
 const BirthdayDashboard = ({ user }) => {
   const [upcomingBirthdays, setUpcomingBirthdays] = useState([]);
@@ -8,7 +9,7 @@ const BirthdayDashboard = ({ user }) => {
   useEffect(() => {
     const fetchBirthdays = async () => {
       try {
-        const response = await axios.get(`${process.env.hosturl}/api/birthdays/${user._id}`);
+        const response = await axios.get(`${hosturl}/api/birthdays/${user._id}`);
         setUpcomingBirthdays(response.data);
       } catch (error) {
         console.error("Error fetching birthdays:", error);
@@ -22,7 +23,7 @@ const BirthdayDashboard = ({ user }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${process.env.hosturl}/api/birthdays/${id}`);
+      await axios.delete(`${hosturl}/api/birthdays/${id}`);
       setUpcomingBirthdays(upcomingBirthdays.filter(birthday => birthday._id !== id));
     } catch (error) {
       console.error("Error deleting birthday:", error);
@@ -31,7 +32,7 @@ const BirthdayDashboard = ({ user }) => {
 
   const handleCancel = async (id) => {
     try {
-      await axios.post(`${process.env.hosturl}/api/cancel-birthday-reminder/${id}`);
+      await axios.post(`${hosturl}/api/cancel-birthday-reminder/${id}`);
       setUpcomingBirthdays(upcomingBirthdays.map(birthday => 
         birthday._id === id ? { ...birthday, isCanceled: true } : birthday
       ));
