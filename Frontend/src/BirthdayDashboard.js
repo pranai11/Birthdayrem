@@ -43,6 +43,19 @@ const BirthdayDashboard = ({ user }) => {
     }
   };
 
+  const handleReinitiate = async (id) => {
+    try {
+      await axios.post(`${hosturl}/api/reinitiate-birthday/${id}`);
+      setUpcomingBirthdays(upcomingBirthdays.map(birthday => 
+        birthday._id === id ? { ...birthday, isCanceled: false } : birthday
+      ));
+      alert('Birthday reminder re-initiated successfully');
+    } catch (error) {
+      console.error("Error re-initiating birthday reminder:", error);
+      alert('Failed to re-initiate birthday reminder');
+    }
+  };
+
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4 mt-2">
@@ -119,7 +132,15 @@ const BirthdayDashboard = ({ user }) => {
                   </button>
                 </>
               ) : (
-                <span className="badge bg-secondary">Canceled</span>
+                <>
+                  <span className="badge bg-secondary">Canceled</span>
+                  <button 
+                    className="btn btn-success btn-sm me-2" 
+                    onClick={() => handleReinitiate(birthday._id)}
+                  >
+                    Re-initiate
+                  </button>
+                </>
               )}
             </div>
           </li>
