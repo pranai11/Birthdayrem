@@ -375,6 +375,29 @@ app.post('/api/cancel-birthday-reminder/:id', async (req, res) => {
   }
 });
 
+// Add this new route to re-initiate a birthday reminder
+app.post('/api/reinitiate-birthday/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const database = client.db("BirthdayReminder");
+    const collection = database.collection("Birthdays");
+    
+    const result = await collection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { isCanceled: false } }
+    );
+    
+    if (result.modifiedCount === 1) {
+      res.status(200).json({ message: "Birthday reminder re-initiated successfully" });
+    } else {
+      res.status(404).json({ message: "Birthday reminder not found or already active" });
+    }
+  } catch (error) {
+    console.error("Error re-initiating birthday reminder:", error);
+    res.status(500).json({ message: "Error re-initiating birthday reminder" });
+  }
+});
+
 async function checkDatabaseContents() {
   const database = client.db("BirthdayReminder");
   const birthdaysCollection = database.collection("Birthdays");
