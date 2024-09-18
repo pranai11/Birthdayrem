@@ -291,14 +291,6 @@ async function sendBirthdayReminders() {
   }
 }
 
-// Run the reminder check every 6 hours
-cron.schedule('0 */6 * * *', () => {
-  console.log('Running birthday reminder check...');
-  console.log('Server time:', new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-  sendBirthdayReminders();
-});
-
-
 async function sendEmailReminder(user, birthday) {
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -318,8 +310,8 @@ async function sendEmailReminder(user, birthday) {
   }
 }
 
-// Run the reminder check every 6 hours
-cron.schedule('0 */6 * * *', () => {
+// Run the reminder check every 10 minutes
+cron.schedule('*/10 * * * *', () => {
   console.log('Running birthday reminder check...');
   console.log('Server time:', new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
   sendBirthdayReminders();
