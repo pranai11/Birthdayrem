@@ -16,9 +16,13 @@ const AddBirthdayReminder = ({ user }) => {
 
   const remindOnOptions = [
     { value: '00:00', label: '12:00 AM' },
+    { value: '03:00', label: '3:00 AM' },
     { value: '06:00', label: '6:00 AM' },
+    { value: '09:00', label: '9:00 AM' },
     { value: '12:00', label: '12:00 PM' },
+    { value: '15:00', label: '3:00 PM' },
     { value: '18:00', label: '6:00 PM' },
+    { value: '21:00', label: '9:00 PM' },
   ];
 
   const handleChange = (e) => {
