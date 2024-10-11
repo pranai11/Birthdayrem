@@ -2,6 +2,8 @@
 
 **Birthdayrem** is a web application designed to help users remember and manage birthdays of their friends, family, and loved ones. By storing important dates and email addresses, the app automatically sends email reminders to ensure that no birthday is forgotten.
 
+## Live Hosted Link: [BirthdayRem](https://birthdayrem-mu.vercel.app/)
+
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Features](#features)
