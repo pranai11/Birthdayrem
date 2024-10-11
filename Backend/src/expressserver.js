@@ -296,7 +296,8 @@ async function sendEmailReminder(user, birthday) {
     from: process.env.EMAIL_USER,
     to: user.email,
     subject: `Birthday Reminder: ${birthday.name}`,
-    text: `Don't forget! ${birthday.name}'s birthday is tomorrow.${birthday.notes ? ` Note: ${birthday.notes}` : ''}`
+    text: `Don't forget! ${birthday.name}'s birthday is tomorrow.${birthday.notes ? ` Note: ${birthday.notes}` : ''}`,
+    text: ` Note: ${user.reminderSettings.personalMessage}`
   };
 
   console.log('Attempting to send email with options:', mailOptions);
